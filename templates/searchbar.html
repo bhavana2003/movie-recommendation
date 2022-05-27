@@ -1,0 +1,318 @@
+{% load static %}
+{% static "images" as baseUrl %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="{%static 'css/bootstrap-reboot.min.css' %}">
+	<link rel="stylesheet" href="{%static 'css/bootstrap-grid.min.css' %}">
+	<link rel="stylesheet" href="{%static 'css/owl.carousel.min.css' %}">
+	<link rel="stylesheet" href="{%static 'css/jquery.mCustomScrollbar.min.css' %}">
+	<link rel="stylesheet" href="{%static 'css/nouislider.min.css' %}">
+	<link rel="stylesheet" href="{%static 'css/ionicons.min.css' %}">
+	<link rel="stylesheet" href="{%static 'css/plyr.css' %}">
+	<link rel="stylesheet" href="{%static 'css/photoswipe.css' %}">
+	<link rel="stylesheet" href="{%static 'css/default-skin.css' %}">
+	<link rel="stylesheet" href="{%static 'css/main.css' %}">
+
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="Bhavana">
+	<title>Do_Recommand</title>
+
+</head>
+<body class="body">
+	<!-- header -->
+	<header class="header">
+		<div class="header__wrap">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="header__content">
+							<!-- header logo -->
+							<a href="{% url 'home' %}" class="header__logo">
+								<img src="{%static 'img\logo.svg' %}" alt="">
+							</a>
+							<!-- end header logo -->
+
+							<!-- header nav -->
+							<ul class="header__nav">
+								{% if user.is_authenticated %}
+								<li class="header__nav-item">
+									<a class="dropdown-toggle header__nav-link" href="#" role="button" id="dropdownMenuHome" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome, {{user.first_name}}!</a>
+								</li>
+								{% else %}
+								<li class="header__nav-item">
+									<a class="dropdown-toggle header__nav-link" href="#" role="button" id="dropdownMenuHome" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome, Please Login</a>
+								</li>
+								{% endif %}
+							</ul>
+							<!-- end header nav -->
+
+							<!-- header auth -->
+							<div class="header__auth">
+								{% if user.is_authenticated %}
+								<li class="header__nav-item">
+									<a href="{% url 'logout' %}">Logout</a>
+								</li>
+								{% endif %}
+								<a href="{% url 'signup' %}" class="header__sign-in">
+									<i class="icon ion-ios-log-in"></i>
+									<span>sign up</span>
+								</a>
+							</div>
+							<!-- end header auth -->
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</header>
+	<!-- end header -->
+	<br/>
+  <!-- home -->
+	<section class="home">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<form action="{% url 'searchbar' %}" method="get" class="header__search">
+						<div class="container">
+							<div class="row">
+								<div class="col-12">
+									<div 
+									class="header__search-content">
+										<input name="search" placeholder="Search for a movie, TV Series that you are looking for">
+										
+										<button type="button">search</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<br/>
+			<div class="row">
+				<div class="col-12">
+					{% if select %}
+							<h1 style="color:white">SEARCHED MOVIE</h1>
+							<br/>				
+						<div class="row">
+							{% for m in movies %}
+							{% if m.title == query %}
+							<!-- card -->
+							<div class="col-6 col-sm-12 col-lg-6">
+								<div class="card card--list">
+									<div class="row">
+										<div class="col-12 col-sm-4">
+											<div class="card__cover">
+												<img src="{{m.img.url}}" alt="" height="250px" width="200px">
+												<a href="#" class="card__play">
+													<i class="icon ion-ios-play"></i>
+												</a>
+											</div>
+										</div>
+
+										<div class="col-12 col-sm-8">
+											<div class="card__content">
+												<h3 class="card__title"><a href="#">{{m.title}}</a></h3>
+												<span class="card__category">
+													<a href="#">{{m.genre1}}</a>
+													<a href="#">{{m.genre2}}</a>
+													<a href="#">{{m.genre3}}</a>
+												</span>
+												<div class="card_time">
+													<a href="#">{{m.runtime}} min</a>
+												</div>
+
+												<div class="card__wrap">
+													<span class="card__rate"><i class="icon ion-ios-star"></i>{{m.rating}}</span>
+
+													<ul class="card__list">
+														<li>HD</li>
+														<li>{{m.age}}+</li>
+													</ul>
+												</div>
+
+												<div class="card__description">
+													<p>{{m.overview}}</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							{% endif %}
+							{% endfor %}
+						</div>           
+          {% else %}
+            <center><h1 style="color:white">NOTHING FOUND<div></div><p>Try other movie...</p></div></h1></center>
+          {% endif %}
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end home -->
+
+  <section class="content">
+		<div class="content__head">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+            {% if select %}
+						<!-- content title -->
+              <h2 class="content__title">RECOMMANDED MOVIES</h2>
+							<br/>
+              <!-- end content title -->
+              <div class="row">
+								{% for i in select %}
+								{% for m in movies %}
+								{% if m.genre1 == i.genre1 or m.genre2 == i.genre1 or m.genre3 == i.genre1 or m.genre1 == i.genre2 or m.genre2 == i.genre2 or m.genre3 == i.genre2 or m.genre1 == i.genre3 or m.genre2 == i.genre3 or m.genre3 == i.genre3 %}
+								{% if not m.title == i.title %}
+								<!-- card -->
+								<div class="col-6 col-sm-12 col-lg-6">
+									<div class="card card--list">
+										<div class="row">
+											<div class="col-12 col-sm-4">
+												<div class="card__cover">
+													<img src="{{m.img.url}}" alt="" height="250px" width="200px">
+													<a href="#" class="card__play">
+														<i class="icon ion-ios-play"></i>
+													</a>
+												</div>
+											</div>
+	
+											<div class="col-12 col-sm-8">
+												<div class="card__content">
+													<h3 class="card__title"><a href="#">{{m.title}}</a></h3>
+													<span class="card__category">
+														<a href="#">{{m.genre1}}</a>
+														<a href="#">{{m.genre2}}</a>
+														<a href="#">{{m.genre3}}</a>
+													</span>
+													<div class="card_time">
+														<a href="#">{{m.runtime}} min</a>
+													</div>
+	
+													<div class="card__wrap">
+														<span class="card__rate"><i class="icon ion-ios-star"></i>{{m.rating}}</span>
+	
+														<ul class="card__list">
+															<li>HD</li>
+															<li>{{m.age}}+</li>
+														</ul>
+													</div>
+	
+													<div class="card__description">
+														<p>{{m.overview}}</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								{% endif %}
+								{% endif %}
+								{% endfor %}
+								{% endfor %}
+							</div>
+            {% endif %}
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+			<!-- end content tabs -->
+			
+		</div>
+	</section>
+
+  <!-- footer -->
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+				<!-- footer list -->
+				<div class="col-12 col-md-3">
+					<h1 class="footer__title">DO_RECOMMAND</h1>
+					<ul class="footer__app">
+						<li><a href="{% url 'home' %}"><img src="{%static 'img\logo.svg' %}" alt=""></a></li>
+					</ul>
+				</div>
+				<!-- end footer list -->
+
+				<!-- footer list -->
+				<div class="col-6 col-sm-4 col-md-3">
+					<h6 class="footer__title">Resources</h6>
+					<ul class="footer__list">
+						<li><a href="{% url 'home' %}">About Us</a></li>
+						<li><a href="{% url 'home' %}">Help</a></li>
+					</ul>
+				</div>
+				<!-- end footer list -->
+
+				<!-- footer list -->
+				<div class="col-6 col-sm-4 col-md-3">
+					<h6 class="footer__title">Legal</h6>
+					<ul class="footer__list">
+						<li><a href="{% url 'home' %}">Terms of Use</a></li>
+						<li><a href="{% url 'home' %}">Privacy Policy</a></li>
+						<li><a href="{% url 'home' %}">Security</a></li>
+					</ul>
+				</div>
+				<!-- end footer list -->
+
+				<!-- footer list -->
+				<div class="col-12 col-sm-4 col-md-3">
+					<h6 class="footer__title">Contact</h6>
+					<ul class="footer__list">
+						<li><a href="{% url 'home' %}">Bhavana Kalivemula</a></li>
+					</ul>
+					<address>
+						<a href="mailto:kalivemulabhavana123@gmail.com">Gmail</a>.<br>
+					</address>
+					<ul class="footer__social">
+						<li class="github"><a href="https://github.com/bhavana2003"><i class="icon ion-logo-github"></i></a></li>
+						<li class="facebook"><a href="https://www.facebook.com/bhavana.kalivemula.3/"><i class="icon ion-logo-facebook"></i></a></li>
+						<li class="instagram"><a href="https://www.instagram.com/_bhavana_029/"><i class="icon ion-logo-instagram"></i></a></li>
+					</ul>
+				</div>
+				<!-- end footer list -->
+
+				<!-- footer copyright -->
+				<div class="col-12">
+					<div class="footer__copyright">
+						<ul>
+							<li><a href="#">Terms of Use</a></li>
+							<li><a href="#">Privacy Policy</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- end footer copyright -->
+			</div>
+		</div>
+	</footer>
+	<!-- end footer -->
+
+	<!-- JS -->
+	<script src="{%static 'js/jquery-3.3.1.min.js' %}"></script>
+	<script src="{%static 'js/bootstrap.bundle.min.js' %}"></script>
+	<script src="{%static 'js/owl.carousel.min.js' %}"></script>
+	<script src="{%static 'js/jquery.mousewheel.min.js' %}"></script>
+	<script src="{%static 'js/jquery.mCustomScrollbar.min.js' %}"></script>
+	<script src="{%static 'js/wNumb.js' %}"></script>
+	<script src="{%static 'js/nouislider.min.js' %}"></script>
+	<script src="{%static 'js/plyr.min.js' %}"></script>
+	<script src="{%static 'js/jquery.morelines.min.js' %}"></script>
+	<script src="{%static 'js/photoswipe.min.js' %}"></script>
+	<script src="{%static 'js/photoswipe-ui-default.min.js' %}"></script>
+	<script src="{%static 'js/main.js' %}"></script>
+</body>
+
+</html>
