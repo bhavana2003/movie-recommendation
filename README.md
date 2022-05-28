@@ -1,5 +1,5 @@
 # movie-recommendation
-	Deployed website : https://do-recommand.herokuapp.com/
+	Deployed website : [Link to Google]https://do-recommand.herokuapp.com/
 
 # About The Project
 	Movie Recommendation Engine project built during Microsoft Engage 2022 program.
@@ -16,7 +16,7 @@
 # How to Run the Web Application?
 	There are no prerequisites to run the “Do Recommand” - Movie Recommendation Engine on your systems.
 	Just simply click on the link and the engine can be used to your satisfiability.
-	https://do-recommand.herokuapp.com/
+	[Link to Google]https://do-recommand.herokuapp.com/
 # How does the Web App work?
 	After the link is accessed and the web app opens, you will come across this view.
 	![pic1](https://user-images.githubusercontent.com/65390549/170828346-1a684b56-674b-452a-a0e8-1258ffa0fb64.png)
@@ -31,6 +31,6 @@
 	![pic6](https://user-images.githubusercontent.com/65390549/170828412-78c1128d-f425-43d4-a880-e7b04bf94f1a.png)	
 	![pic7](https://user-images.githubusercontent.com/65390549/170828436-5aa5ecfd-df5b-4ccd-a864-2d8b2af3a3b2.png)
 # Resources Used
-	For learning Tech Stack - https://www.youtube.com/watch?v=OTmQOjsl0eg&t=5791s
-	For Frontend - https://www.templateshub.net/template/FlixGo-Online-Movies-Template
+	For learning Tech Stack - [Link to Google]https://www.youtube.com/watch?v=OTmQOjsl0eg&t=5791s
+	For Frontend - [Link to Google]https://www.templateshub.net/template/FlixGo-Online-Movies-Template
 
