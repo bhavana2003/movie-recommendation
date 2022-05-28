@@ -1,5 +1,5 @@
 # movie-recommendation
-	Deployed website : [Link to Google] https://do-recommand.herokuapp.com/
+	Deployed website : https://do-recommand.herokuapp.com/
 
 # About The Project
 	Movie Recommendation Engine project built during Microsoft Engage 2022 program.
@@ -16,7 +16,7 @@
 # How to Run the Web Application?
 	There are no prerequisites to run the “Do Recommand” - Movie Recommendation Engine on your systems.
 	Just simply click on the link and the engine can be used to your satisfiability.
-	[Link to Google] https://do-recommand.herokuapp.com/
+	https://do-recommand.herokuapp.com/
 # How does the Web App work?
 	After the link is accessed and the web app opens, you will come across this view.
 	![pic1](https://user-images.githubusercontent.com/65390549/170828346-1a684b56-674b-452a-a0e8-1258ffa0fb64.png)
