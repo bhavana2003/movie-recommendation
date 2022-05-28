@@ -1,5 +1,6 @@
 # movie-recommendation
 	Deployed website : [Link to website](https://do-recommand.herokuapp.com/)
+	![stack Overflow](http://lmsotfy.com/so.png)
 
 # About The Project
 	Movie Recommendation Engine project built during Microsoft Engage 2022 program.
