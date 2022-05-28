@@ -3,6 +3,7 @@
 PROJECT CODE IS IN MAIN BRANCH.
 
 TECH STACK I USED :
+
 FRONTEND:
 Html, Css, Js, Bootstrap + jQuery
 
